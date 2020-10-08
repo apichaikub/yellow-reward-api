@@ -7,6 +7,7 @@ const models = {
   User: postgreYellow.import('../models/user'),
   OAuthRefreshToken: postgreYellow.import('../models/oauthrefreshtoken'),
   Reward: postgreYellow.import('../models/reward'),
+  Receipt: postgreYellow.import('../models/receipt'),
 }
 
 // set association to the models that was declared

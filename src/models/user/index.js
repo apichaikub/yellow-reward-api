@@ -10,6 +10,30 @@ export default (sequelize) => {
     user.password = hash
   })
 
+  // TODO: refactoring
+  // User.associate = ({ OAuthRefreshToken, Reward, Receipt }) => {
+  //   User.hasMany(OAuthRefreshToken, {
+  //     foreignKey: {
+  //       name: 'rfId',
+  //       allowNull: false,
+  //     },
+  //   })
+
+  //   User.hasMany(Reward, {
+  //     foreignKey: {
+  //       name: 'id',
+  //       allowNull: false,
+  //     },
+  //   })
+
+  //   User.hasMany(Receipt, {
+  //     foreignKey: {
+  //       name: 'id',
+  //       allowNull: false,
+  //     },
+  //   })
+  // }
+
   User.prototype.validPassword = function(password) {
     return bcrypt.compare(password, this.password)
   }

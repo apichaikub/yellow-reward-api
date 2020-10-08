@@ -1,5 +1,5 @@
 import { validator, getErrMsg } from '../helper/validator'
-import { authRoles, userRoles, rewardRules } from '../helper/validator/roles'
+import { authRoles, userRoles, rewardRules, receiptRules } from '../helper/validator/roles'
 import { GRANT_TYPE } from '../helper/enum'
 
 const validatorRegister = (req, res, next) => {
@@ -64,10 +64,43 @@ const validatorRewardUpdate = (req, res, next) => {
   })
 }
 
+const validatorReceiptCreate = (req, res, next) => {
+  validator(req.body, receiptRules.create, (err) => {
+    if (!!err) {
+      res.status(400).fail(getErrMsg(err))
+    } else {
+      next()
+    }
+  })
+}
+
+const validatorReceiptUpdate = (req, res, next) => {
+  validator(req.body, receiptRules.update, (err) => {
+    if (!!err) {
+      res.status(400).fail(getErrMsg(err))
+    } else {
+      next()
+    }
+  })
+}
+
+const validatorReceiptUpdatePoints = (req, res, next) => {
+  validator(req.body, receiptRules.updatePoints, (err) => {
+    if (!!err) {
+      res.status(400).fail(getErrMsg(err))
+    } else {
+      next()
+    }
+  })
+}
+
 export {
   validatorRegister,
   validatorAuthGrantType,
   validatorAuthToken,
   validatorRewardCreate,
   validatorRewardUpdate,
+  validatorReceiptCreate,
+  validatorReceiptUpdate,
+  validatorReceiptUpdatePoints,
 }
