@@ -27,4 +27,8 @@ export default {
     }),
     defaultValue: null,
   },
+  points: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
 }
