@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  postgresql-yellow:
+    image: postgres:12.2
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=yellow
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./database/postgresql/yellow:/var/lib/postgresql/data/
+
+  yellow-api:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules/bcrypt/
+    ports:
+      - 5001:5001
+    environment:
+      - NODE_ENV=development
+      - PORT=5001
+      - WAIT_HOSTS=postgresql-yellow:5432
+      - DATABASE_POSTGRE_YELLOW=postgres://root:password@postgresql-yellow:5432/yellow
+    depends_on:
+      - postgresql-yellow
+
+volumes:
+  postgresql-yellow:
