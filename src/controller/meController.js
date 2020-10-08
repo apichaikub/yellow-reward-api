@@ -6,8 +6,36 @@ import { userService } from '../services'
 class receiptController {
   /**
    * @param {*} req
-   * @param {Object} req.body
-   * @param {Number} req.body.points
+   * @param {*} res
+   */
+  async info(req, res) {
+    try {
+      const user = req.user
+      const models = req.models
+      const data = await userService.info(user, models)
+      res.success(data)
+    } catch (error) {
+      res.status(error.code || 500).fail(error.message)
+    }
+  }
+
+  /**
+   * @param {*} req
+   * @param {*} res
+   */
+  async myReward(req, res) {
+    try {
+      const user = req.user
+      const models = req.models
+      const data = await userService.myReward(user, models)
+      res.success(data)
+    } catch (error) {
+      res.status(error.code || 500).fail(error.message)
+    }
+  }
+
+  /**
+   * @param {*} req
    * @param {*} res
    */
   async pointsExchange(req, res) {
