@@ -1,4 +1,5 @@
 /*
+ * @param {Object} user
  * @param {Object} input client request data, or `body` in `express`
  * @param {Object} models
  * @param {String} input.name
@@ -7,7 +8,7 @@
  * @param {String} input.fileExtension
  * @return {Object} Response reward
  */
-export default async (input, models) => {
+export default async (user, input, models) => {
   const { Reward } = models
 
   const reward = await Reward.create({
@@ -15,6 +16,7 @@ export default async (input, models) => {
     points: input.points,
     fileUrl: input.fileUrl,
     fileExtension: input.fileExtension,
+    createdBy: user.id,
   })
 
   return reward

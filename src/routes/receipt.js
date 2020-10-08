@@ -1,4 +1,6 @@
 import express from 'express'
+import verifyToken from '../middleware/verifyToken'
+import requiredAdminRole from '../middleware/requiredAdminRole'
 import { validatorReceiptCreate, validatorReceiptUpdate, validatorReceiptUpdatePoints } from '../middleware/validation'
 import receiptController from '../controller/receiptController'
 
@@ -9,6 +11,7 @@ router.get('/',
       res.opeationName = 'getReceiptList'
       next()
     },
+    verifyToken,
     receiptController.list,
 )
 
@@ -17,6 +20,7 @@ router.get('/:id',
       res.opeationName = 'getReceiptSingle'
       next()
     },
+    verifyToken,
     receiptController.single,
 )
 
@@ -26,6 +30,7 @@ router.post('/',
       next()
     },
     validatorReceiptCreate,
+    verifyToken,
     receiptController.create,
 )
 
@@ -35,6 +40,7 @@ router.put('/:id',
       next()
     },
     validatorReceiptUpdate,
+    verifyToken,
     receiptController.update,
 )
 
@@ -44,6 +50,8 @@ router.put('/:id/points',
       next()
     },
     validatorReceiptUpdatePoints,
+    verifyToken,
+    requiredAdminRole,
     receiptController.updatePoints,
 )
 
@@ -52,6 +60,7 @@ router.delete('/:id',
       res.opeationName = 'deleteReceiptDelete'
       next()
     },
+    verifyToken,
     receiptController.remove,
 )
 

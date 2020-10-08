@@ -1,4 +1,5 @@
 import express from 'express'
+import verifyToken from '../middleware/verifyToken'
 import { validatorRewardCreate, validatorRewardUpdate } from '../middleware/validation'
 import rewardController from '../controller/rewardController'
 
@@ -9,6 +10,7 @@ router.get('/',
       res.opeationName = 'getRewardsList'
       next()
     },
+    verifyToken,
     rewardController.list,
 )
 
@@ -17,6 +19,7 @@ router.get('/:id',
       res.opeationName = 'getRewardsSingle'
       next()
     },
+    verifyToken,
     rewardController.single,
 )
 
@@ -25,6 +28,7 @@ router.post('/',
       res.opeationName = 'postRewardsCreate'
       next()
     },
+    verifyToken,
     validatorRewardCreate,
     rewardController.create,
 )
@@ -34,6 +38,7 @@ router.put('/:id',
       res.opeationName = 'putRewardsUpdate'
       next()
     },
+    verifyToken,
     validatorRewardUpdate,
     rewardController.update,
 )
@@ -43,6 +48,7 @@ router.delete('/:id',
       res.opeationName = 'deleteRewardsDelete'
       next()
     },
+    verifyToken,
     rewardController.remove,
 )
 

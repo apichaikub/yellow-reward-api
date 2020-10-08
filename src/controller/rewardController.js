@@ -44,9 +44,10 @@ class rewardController {
    */
   async create(req, res) {
     try {
+      const user = req.user
       const input = req.body
       const models = req.models
-      const data = await rewardService.create(input, models)
+      const data = await rewardService.create(user, input, models)
       res.success(data)
     } catch (error) {
       res.status(error.code || 500).fail(error.message)

@@ -42,9 +42,10 @@ class receiptController {
    */
   async create(req, res) {
     try {
+      const user = req.user
       const input = req.body
       const models = req.models
-      const data = await receiptService.create(input, models)
+      const data = await receiptService.create(user, input, models)
       res.success(data)
     } catch (error) {
       res.status(error.code || 500).fail(error.message)
@@ -78,10 +79,11 @@ class receiptController {
    */
   async updatePoints(req, res) {
     try {
+      const user = req.user
       const params = req.params
       const input = req.body
       const models = req.models
-      const data = await receiptService.updatePoints(params, input, models)
+      const data = await receiptService.updatePoints(user, params, input, models)
       res.success(data)
     } catch (error) {
       res.status(error.code || 500).fail(error.message)
