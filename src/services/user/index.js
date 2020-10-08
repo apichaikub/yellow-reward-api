@@ -1,7 +1,9 @@
 import register from './register'
-import setPoints from './setPoints'
+import pointsUpdate from './pointsUpdate'
+import pointsExchange from './pointsExchange'
 
 export default {
   register,
-  setPoints,
+  pointsUpdate,
+  pointsExchange,
 }

@@ -36,7 +36,7 @@ export default async (user, params, input, models) => {
     },
   })
 
-  await userService.setPoints(models, {
+  await userService.pointsUpdate(models, {
     isIncrement: true,
     points: input.points,
     userId: receipt.createdBy,
