@@ -1,6 +1,6 @@
 export default Object.freeze({
   ENUM: {
-    'GUEST': 'GUEST',
+    'USER': 'USER',
     'ADMIN': 'ADMIN',
   },
   get values() {

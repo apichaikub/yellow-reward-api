@@ -1,5 +1,6 @@
 import express from 'express'
 import verifyToken from '../middleware/verifyToken'
+import requiredAdminRole from '../middleware/requiredAdminRole'
 import { validatorRewardCreate, validatorRewardUpdate } from '../middleware/validation'
 import rewardController from '../controller/rewardController'
 
@@ -11,6 +12,7 @@ router.get('/',
       next()
     },
     verifyToken,
+    requiredAdminRole,
     rewardController.list,
 )
 
@@ -20,6 +22,7 @@ router.get('/:id',
       next()
     },
     verifyToken,
+    requiredAdminRole,
     rewardController.single,
 )
 
@@ -29,6 +32,7 @@ router.post('/',
       next()
     },
     verifyToken,
+    requiredAdminRole,
     validatorRewardCreate,
     rewardController.create,
 )
@@ -39,6 +43,7 @@ router.put('/:id',
       next()
     },
     verifyToken,
+    requiredAdminRole,
     validatorRewardUpdate,
     rewardController.update,
 )
@@ -49,6 +54,7 @@ router.delete('/:id',
       next()
     },
     verifyToken,
+    requiredAdminRole,
     rewardController.remove,
 )
 

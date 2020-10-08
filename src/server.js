@@ -28,7 +28,7 @@ app.use(useModels)
 app.use(router)
 
 // sync to postgre
-postgreYellow.authenticate({ force: true }).then(() => {
+postgreYellow.sync({ force: true }).then(() => {
   console.log('sync to postgreYellow')
 })
 
