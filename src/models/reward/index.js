@@ -4,14 +4,14 @@ import options from './options'
 export default (sequelize) => {
   const Reward = sequelize.define('reward', attribues, options)
 
-  // Reward.associate = ({ PointExchangeRewards }) => {
-  //   Reward.hasMany(PointExchangeRewards, {
-  //     foreignKey: {
-  //       name: 'id',
-  //       allowNull: false,
-  //     },
-  //   })
-  // }
+  Reward.associate = ({ PointExchangeReward }) => {
+    Reward.hasMany(PointExchangeReward, {
+      foreignKey: {
+        name: 'rewardId',
+        allowNull: false,
+      },
+    })
+  }
 
   return Reward
 }

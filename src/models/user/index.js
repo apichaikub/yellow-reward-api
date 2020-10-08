@@ -10,7 +10,7 @@ export default (sequelize) => {
     user.password = hash
   })
 
-  User.associate = ({ OAuthRefreshToken, Reward, Receipt }) => {
+  User.associate = ({ OAuthRefreshToken, Reward, Receipt, PointExchangeReward }) => {
     User.hasMany(OAuthRefreshToken, {
       foreignKey: {
         name: 'userId',
@@ -28,6 +28,13 @@ export default (sequelize) => {
     User.hasMany(Receipt, {
       foreignKey: {
         name: 'createdBy',
+        allowNull: false,
+      },
+    })
+
+    User.hasMany(PointExchangeReward, {
+      foreignKey: {
+        name: 'userId',
         allowNull: false,
       },
     })

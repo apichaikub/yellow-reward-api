@@ -11,13 +11,20 @@ import { ResponseError } from '../../utils/extend'
  */
 export default async (_user, params, models) => {
   const userId = _user.id
-  const { Reward, User } = models
+  const { Reward, User, PointExchangeReward } = models
 
-  const reward = await Reward.findOne({
-    where: {
-      id: params.id,
-    },
-  })
+  const [reward, user] = await Promise.all([
+    Reward.findOne({
+      where: {
+        id: params.id,
+      },
+    }),
+    User.findOne({
+      where: {
+        userId: userId,
+      },
+    }),
+  ])
 
   if (!reward) {
     throw new ResponseError({
@@ -26,12 +33,6 @@ export default async (_user, params, models) => {
     })
   }
 
-  const user = await User.findOne({
-    where: {
-      userId: userId,
-    },
-  })
-
   if (user.points < reward.points) {
     throw new ResponseError({
       code: 400,
@@ -39,13 +40,17 @@ export default async (_user, params, models) => {
     })
   }
 
-  await userService.pointsUpdate(models, {
-    isIncrement: false,
-    points: reward.points,
-    userId: userId,
-  })
+  const [, exchangeReward] = await Promise.all([
+    userService.pointsUpdate(models, {
+      isIncrement: false,
+      points: reward.points,
+      userId: userId,
+    }),
+    PointExchangeReward.create({
+      userId: userId,
+      rewardId: reward.id,
+    }),
+  ])
 
-  // TODO: add new row to `point_exchange_rewards` tables
-
-  return true
+  return exchangeReward
 }
