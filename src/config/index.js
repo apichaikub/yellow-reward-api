@@ -1,3 +1,9 @@
+require('dotenv').config()
+
+console.log('process.env.PORT', process.env.PORT)
+console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+console.log('process.env.DATABASE_POSTGRE_YELLOW', process.env.DATABASE_POSTGRE_YELLOW)
+
 export default {
   // set port for the server. use `src/server.js`.
   'port': process.env.PORT,

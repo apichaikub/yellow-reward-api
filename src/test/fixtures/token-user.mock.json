@@ -1,0 +1,6 @@
+{
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFmYzRmN2M0LTJkNDQtNDQwMC1iMjY3LTdhZGE4NTdkYTM1ZSIsInJvbGUiOiJVU0VSIiwic2NvcGVzIjpbInJld2FyZC5yZWFkIl0sImlhdCI6MTYwMjIxMDY1OCwiZXhwIjoxNjAyMjExNTU4fQ.xoShUJOG5ZTQCSYKcHf1ucfj9LKD880Eqct6-01Bw5E",
+    "tokenType": "Bearer",
+    "expiresIn": 900,
+    "refreshToken": "ac262e733792838dcf525fee7d2129c0381fb543a5efaee697a36b21eea25e86759550da6ba1cdb79bb818869190972d"
+}
